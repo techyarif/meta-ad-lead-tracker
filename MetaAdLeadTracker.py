@@ -105,6 +105,35 @@ def build_telegram_message(lead: Dict[str, str]) -> str:
     full_name = f"{first_name} {last_name}".strip() or "N/A"
     phone = lead.get("phone_number", "").strip() or "N/A"
 
+
+    # Clean phone number for WhatsApp
+    whatsapp_phone = "".join(filter(str.isdigit, phone))
+
+    # Add country code if missing
+    if whatsapp_phone and not whatsapp_phone.startswith("91"):
+        whatsapp_phone = f"91{whatsapp_phone}"
+
+    # Prefilled WhatsApp message
+    whatsapp_text = (
+        f"Hi {first_name or full_name},\n\n"
+        f"Thank you for your interest in {PROJECT_NAME}, Kharghar.\n\n"
+        f"Based on your requirement for {looking_for or 'a property'} "
+        f"within a budget of {budget or 'your preferred range'}, "
+        f"we do have suitable options available.\n\n"
+        f"Just to guide you better — is this for self-use or investment?\n"
+        f"Also, are you currently staying in Navi Mumbai or planning to shift here?"
+    )
+
+    # Encode message
+    encoded_text = quote(whatsapp_text)
+
+    # Final WhatsApp click-to-chat URL
+    whatsapp_url = (
+        f"https://wa.me/{whatsapp_phone}?text={encoded_text}"
+        if whatsapp_phone
+        else "N/A"
+    )
+
     message = (
         f"🎉 New Lead - {PROJECT_NAME} from Meta Ads\n\n"
         f"Name: {full_name}\n"
@@ -112,8 +141,15 @@ def build_telegram_message(lead: Dict[str, str]) -> str:
         f"Looking for: {looking_for or 'N/A'}\n"
         f"Budget: {budget or 'N/A'}\n"
         f"When to buy: {when_to_buy or 'N/A'}"
+
+        f"\n\n"
+        f"------------------------------------\n"
+        f"\n"
+        f"Click to Whatsapp: \n"
+        f"{whatsapp_url}"
     )
     return message
+
 
 
 def send_telegram_message(text: str) -> bool:
