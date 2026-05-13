@@ -152,7 +152,9 @@ def receive_webhook():
     """
     Receives leadgen events and forwards lead details to Telegram.
     """
+    print("=== WEBHOOK HIT ===")
     data = request.get_json(silent=True)
+    print(data)
     if not data:
         return jsonify({"status": "ignored", "reason": "no json"}), 200
 
@@ -170,11 +172,13 @@ def receive_webhook():
                 continue
 
             lead = fetch_lead_details(str(leadgen_id))
+            print("Lead fetched:", lead)
             if not lead:
                 continue
 
             msg = build_telegram_message(lead)
             send_telegram_message(msg)
+            print("Telegram message sent successfully")
 
     return jsonify({"status": "ok"}), 200
 
