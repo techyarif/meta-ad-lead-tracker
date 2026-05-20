@@ -58,7 +58,7 @@ def _field_data_to_dict(field_data: List[Dict]) -> Dict[str, str]:
             continue
         output[name] = ", ".join(str(v) for v in values) if values else ""
 
-    print(output)
+    print("Output: ", output)
     return output
 
 
