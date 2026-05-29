@@ -29,6 +29,7 @@ TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
 # Optional project label shown in Telegram
 PROJECT_NAME = os.getenv("PROJECT_NAME", "Sai Sun City")
 
+whatsapp_url = ""
 
 def _appsecret_proof(access_token: str, app_secret: str) -> str:
     """
@@ -131,6 +132,7 @@ def build_telegram_message(lead: Dict[str, str]) -> str:
     encoded_text = quote(whatsapp_text)
 
     # Final WhatsApp click-to-chat URL
+    global whatsapp_url
     whatsapp_url = (
         f"https://wa.me/{whatsapp_phone}?text={encoded_text}"
         if whatsapp_phone
@@ -163,6 +165,17 @@ def send_telegram_message(text: str) -> bool:
     payload = {
         "chat_id": TELEGRAM_CHAT_ID,
         "text": text,
+        "parse_mode": "Markdown",
+        "reply_markup": {
+            "inline_keyboard": [
+            [
+                {
+                "text": "💬 Chat on WhatsApp",
+                "url": whatsapp_url
+                }
+            ]
+            ]
+        }
     }
 
     response = requests.post(url, json=payload, timeout=20)
