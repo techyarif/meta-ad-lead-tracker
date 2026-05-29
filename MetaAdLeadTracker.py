@@ -148,10 +148,8 @@ def build_telegram_message(lead: Dict[str, str]) -> str:
         f"When to buy: {when_to_buy or 'N/A'}"
 
         f"\n\n"
-        f"------------------------------------\n"
+        f"------------------------------------"
         f"\n"
-        f"Click to Whatsapp: \n"
-        f"{whatsapp_url}"
     )
     return message
 
