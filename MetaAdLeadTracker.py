@@ -119,13 +119,14 @@ def build_telegram_message(lead: Dict[str, str]) -> str:
 
     # Prefilled WhatsApp message
     whatsapp_text = (
-        f"Hi {first_name or full_name},\n\n"
-        f"Thank you for your interest in {PROJECT_NAME}, Kharghar.\n\n"
-        f"Based on your requirement for {looking_for or 'a property'} "
-        f"within a budget of {budget or 'your preferred range'}, "
-        f"we do have suitable options available.\n\n"
-        f"Just to guide you better — is this for self-use or investment?\n"
-        f"Also, are you currently staying in Navi Mumbai or planning to shift here?"
+        f"Hi {full_name},\n\n"
+        "Thank you for showing interest in Sai Sun City, Kharghar.\n\n"
+        "We're excited to share our latest pricing, floor plans & ongoing offers with you.\n\n"
+        "❤️ *But first, something close to our heart* —\n\n"
+        "We are proud to support *Rotary Club Satellite City Navi Mumbai* in their mission to:\n"
+        "🩸 Organise *blood donation camps*, 🍱 donate *meals for patients & families* in Navi Mumbai hospitals who can't afford food\n\n"
+        "When you book your home here, a part of your purchase quietly touches lives that need it the most.\n\n"
+        "Are you looking for a home to live in or for investment?"
     )
 
     # Encode message
