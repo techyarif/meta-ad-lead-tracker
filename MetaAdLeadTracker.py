@@ -123,8 +123,7 @@ def build_telegram_message(lead: Dict[str, str]) -> str:
         "Thank you for showing interest in Sai Sun City, Kharghar.\n\n"
         "We're excited to share our latest pricing, floor plans & ongoing offers with you.\n\n"
         "❤️ *But first, something close to our heart* —\n\n"
-        "We are proud to support *Rotary Club Satellite City Navi Mumbai* in their mission to:\n"
-        "🩸 Organise *blood donation camps*, 🍱 donate *meals for patients & families* in Navi Mumbai hospitals who can't afford food\n\n"
+        "We are proud to support charity for the NGOs.\n\n"
         "When you book your home here, a part of your purchase quietly touches lives that need it the most.\n\n"
         "Are you looking for a home to live in or for investment?"
     )
